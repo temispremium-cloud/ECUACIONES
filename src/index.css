@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-slate-950: #ffffff;
+  --color-slate-900: rgba(224, 233, 253, 0.9);
+  --color-slate-850: rgba(233, 236, 241, 0.9);
+  --color-slate-800: rgba(136, 148, 171, 0.2);
+  --color-slate-700: rgba(136, 148, 171, 0.15);
+  
+  --color-indigo-650: #6166fe;
+  --color-indigo-600: #6166fe;
+  --color-indigo-500: #3275f7;
+  --color-indigo-400: #6166fe;
+  
+  --color-emerald-500: #4bc3a7;
+  --color-emerald-400: #4bc3a7;
+  
+  --shadow-inner: none;
+  --shadow-lg: 0 2px 6px rgba(136,148,171,.2), 0 24px 20px -24px rgba(71,82,107,.1);
+  --shadow-xl: 0 2px 6px rgba(136,148,171,.2), 0 24px 20px -24px rgba(71,82,107,.1);
+  --shadow-2xl: 0 2px 6px rgba(136,148,171,.2), 0 24px 20px -24px rgba(71,82,107,.1);
+  
+  --radius-xl: 12px;
+  --radius-2xl: 12px;
+  --radius-3xl: 12px;
+}
+
+/* Base Body Design and global overrides */
+body, .min-h-screen, html {
+  background: linear-gradient(135deg, #a3bded 0%, #6991c7 100%) !important;
+  color: #0f0f10 !important;
+  font-family: 'DM Sans', sans-serif !important;
+}
+
+*:not(.g7-server-container *):not(.g7-server-container):not(.cc-rack *):not(.cc-rack):not(#chassis-sv02-container *):not(#chassis-sv02-container):not(.real-terminal-container *):not(.real-terminal-container) {
+  font-family: 'DM Sans', sans-serif;
+  border-color: rgba(136, 148, 171, 0.2) !important;
+  text-shadow: none !important;
+  box-shadow: none;
+}
+
+/* Monospace overrides for equations & charts */
+.font-mono, font-mono, code, pre, .mono, text, svg text {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}
+
+/* Force Light Theme Colors on cards */
+.bg-slate-950, .bg-slate-900, .bg-slate-950\/40, .bg-slate-950\/70, .bg-slate-900\/90, .bg-slate-900\/60, .bg-slate-950\/80,
+section, .section, #chatbot-panel, #emulator-panel-container, #s-plane-panel, #time-domain-panel, #physical-emulation-main {
+  background: linear-gradient(135deg, rgba(224,233,253,0.95) 0%, rgba(233,236,241,0.95) 100%) !important;
+  color: #0f0f10 !important;
+  border: none !important;
+  box-shadow: 0 2px 6px rgba(136,148,171,.2), 0 24px 20px -24px rgba(71,82,107,.1) !important;
+  border-radius: 12px !important;
+}
+
+/* Explicit layout sections shadow configuration */
+section, .section, #chatbot-panel, #emulator-panel-container, #s-plane-panel, #time-domain-panel, #physical-emulation-main {
+  padding: 20px !important;
+}
+
+#emulator-panel-container {
+  padding: 0 !important;
+}
+
+header {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-bottom: none !important;
+  box-shadow: 0 2px 6px rgba(136,148,171,.1) !important;
+  backdrop-filter: blur(8px) !important;
+  border-radius: 0 0 16px 16px !important;
+}
+
+/* Text hierarchy colors and sizing */
+h1:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *), h2:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *), h3:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *), h4:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *), th:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *), .text-slate-100:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *), .text-slate-200:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *) {
+  color: #22244a !important;
+  font-weight: 700 !important;
+}
+
+.text-white:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *) {
+  color: #22244a !important;
+}
+
+.text-slate-300:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *), p:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *), span:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *), li:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *), blockquote:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *) {
+  color: #0f0f10 !important;
+}
+
+.text-slate-400:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *), .text-slate-500:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *), .notif-body:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *):not(.real-terminal-container *) {
+  color: #79798c !important;
+}
+
+/* Accent Buttons and Interactive Items */
+button.bg-indigo-600, .bg-indigo-600 {
+  background: #6166fe !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 4px 12px rgba(97, 102, 254, 0.2) !important;
+  transition: all 0.2s ease !important;
+}
+
+button.bg-indigo-600:hover, .bg-indigo-600:hover {
+  background: #3275f7 !important;
+  box-shadow: 0 4px 12px rgba(50, 117, 247, 0.2) !important;
+}
+
+button.bg-slate-800, .bg-slate-800 {
+  background: #ffffff !important;
+  color: #22244a !important;
+  border: 1px solid rgba(136,148,171,0.2) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 4px rgba(136,148,171,.1) !important;
+}
+
+button.bg-slate-800:hover, .bg-slate-800:hover {
+  background: rgba(224,233,253,0.5) !important;
+}
+
+/* Monospace + Uppercase Label overrides */
+span[class*="font-mono"][class*="uppercase"]:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *),
+span[class*="text-[10px]"][class*="uppercase"]:not(.g7-server-container *):not(.cc-rack *):not(#chassis-sv02-container *) {
+  font-family: 'DM Sans', sans-serif !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  font-weight: 600 !important;
+  color: #22244a !important;
+}
+
+/* Green Mint / Success metrics */
+.text-emerald-400, .text-emerald-500, .bg-emerald-500, .bg-emerald-600, [class*="bg-emerald-600"], [class*="bg-emerald-500"] {
+  color: #4bc3a7 !important;
+}
+.bg-emerald-950\/10, .bg-emerald-950\/20 {
+  background-color: rgba(75, 195, 167, 0.1) !important;
+}
+
+/* Alerts / Warnings / Uncontrolled without glowing neons */
+.text-red-400, .text-red-500, .text-rose-400, .text-rose-500, .text-red-600 {
+  color: #ef4444 !important;
+}
+.border-red-900\/30, .border-red-500\/20, .border-slate-800, .border-slate-700\/60, .border-slate-850 {
+  border: none !important;
+}
+.shadow-\[0_0_15px_rgba\(6\,182\,212\,0\.15\)\] {
+  box-shadow: 0 2px 6px rgba(136,148,171,.2) !important;
+}
+
+/* HUD and Readouts alignment */
+.bg-amber-950\/20, .bg-amber-950\/40 {
+  background-color: rgba(245, 158, 11, 0.08) !important;
+  color: #f59e0b !important;
+}
+
+/* Studio scene backdrop & responsive bento grids */
+.custom-scene-container {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(136, 148, 171, 0.15) !important;
+  box-shadow: 0 4px 12px rgba(136,148,171,.1) !important;
+}
+
+.custom-scene-container .panel-title {
+  color: #22244a !important;
+  font-weight: 700 !important;
+}
+
+.custom-scene-container .mode-toggle {
+  background-color: rgba(136,148,171,0.1) !important;
+  border: 1px solid rgba(136,148,171,0.2) !important;
+  border-radius: 8px !important;
+}
+
+.custom-scene-container .mode-btn {
+  color: #79798c !important;
+}
+
+.custom-scene-container .mode-btn.active {
+  background-color: #ffffff !important;
+  color: #22244a !important;
+  box-shadow: 0 2px 6px rgba(136,148,171,.15) !important;
+}
+
+/* Active feedback controls grid inside G(s) buttons selector */
+[class*="activeProtocol\?.id === proto.id"] {
+  box-shadow: 0 4px 12px rgba(50, 117, 247, 0.1) !important;
+}
+
+/* Chat user log entries and terminal display wrapper */
+.console-scrollbar:not(.real-terminal-body *) {
+  background: #f8fafc !important;
+  border: 1px solid rgba(136,148,171,0.15) !important;
+  border-radius: 8px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+.console-scrollbar:not(.real-terminal-body *) div {
+  color: #22244a !important;
+}
+
+.real-terminal-body .console-scrollbar {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.bg-purple-950\/20 {
+  background-color: rgba(97, 102, 254, 0.1) !important;
+  color: #6166fe !important;
+}
+
+
+
+/* S-plane region coloring */
+rect[fill="url(#green-glow)"] {
+  fill: #4bc3a7 !important;
+}
+rect[fill="url(#red-glow)"] {
+  fill: #ef4444 !important;
+}
+
+/* Chatbot overrides */
+#chatbot-panel, [id="chatbot-panel"] {
+  background: #ffffff !important;
+  border: none !important;
+}
+#chatbot-panel .bg-slate-900 {
+  background-color: #f1f5f9 !important;
+  border-bottom: 1px solid rgba(136,148,171,.1) !important;
+}
+#chatbot-panel input {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(136,148,171,.2) !important;
+  color: #0f0f10 !important;
+}
+#chatbot-panel input:focus {
+  border-color: #6166fe !important;
+}
+#chatbot-panel .bg-slate-900\/60 {
+  background-color: #f8fafc !important;
+  border-top: 1px solid rgba(136,148,171,.2) !important;
+}
+/* Chat message bubbles style rules */
+[class*="rounded-tl-none"] {
+  background-color: #e2e8f0 !important;
+  color: #0d121f !important;
+  border: 1px solid rgba(136,148,171,.1) !important;
+}
+[class*="rounded-tr-none"] {
+  background-color: #6166fe !important;
+  color: #ffffff !important;
+}
+
+/* s-plane and time-domain graphs styling */
+#s-plane-panel, #time-domain-panel, [id="s-plane-panel"], [id="time-domain-panel"] {
+  background: #ffffff !important;
+  border: none !important;
+}
+#s-plane-panel svg, #time-domain-panel svg {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(136,148,171,.15) !important;
+  border-radius: 8px !important;
+}
+#s-plane-panel .relative, #time-domain-panel .relative {
+  border: none !important;
+  background-color: transparent !important;
+}
+
+/* Map grid lines to elegant soft blue-gray ticks */
+svg line[stroke="#334155"] {
+  stroke: rgba(136,148,171,0.2) !important;
+}
+svg line[stroke="#475569"] {
+  stroke: rgba(136,148,171,0.3) !important;
+}
+svg text[fill="#64748b"], svg text[fill="#94a3b8"] {
+  fill: #888da9 !important;
+}
+
+/* ===== Real Terminal Styles ===== */
+.real-terminal-container {
+  border-radius: 10px !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
+  box-shadow: 0 12px 40px rgba(34, 36, 74, 0.18), 0 2px 6px rgba(34, 36, 74, 0.10) !important;
+}
+
+.real-top-bar {
+  background: linear-gradient(180deg, #3f3f3f 0%, #343434 100%) !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 12px !important;
+  position: relative !important;
+  border-radius: 10px 10px 0 0 !important;
+}
+
+.real-window-buttons ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  gap: 8px !important;
+}
+
+.real-window-buttons li {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+}
+
+.real-btn-close     { background: #ed5955 !important; }
+.real-btn-minimize  { background: #e5bf3c !important; }
+.real-btn-zoom      { background: #57c038 !important; }
+
+.real-window-title {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  text-align: center !important;
+  color: #b2b2b2 !important;
+  font-size: 13px !important;
+  pointer-events: none !important;
+}
+
+.real-terminal-body {
+  background: #0c0c0c !important;           /* negro plano, sin gradiente ni glow */
+  color: #d4d4d4 !important;                /* texto base gris claro */
+  font-family: Menlo, Consolas, "Courier New", monospace !important;
+  font-size: 13px !important;
+  line-height: 1.7 !important;
+  padding: 16px 18px !important;
+}
+
+.real-line { margin: 0 0 2px 0 !important; white-space: pre-wrap !important; word-break: break-all !important; }
+
+/* prompt realista: usuario@host:~$ */
+.real-prompt { color: #57c038 !important; font-weight: 600 !important; }
+.real-path   { color: #4ec9ff !important; }
+.real-cmd    { color: #d4d4d4 !important; }
+.real-ts     { color: #6a6a6a !important; }       /* timestamp atenuado */
+
+/* color SOLO con significado, como en una terminal real */
+.real-log-ok    { color: #57c038 !important; }    /* éxito / estado normal */
+.real-log-warn  { color: #e5bf3c !important; }    /* advertencia */
+.real-log-err   { color: #ed5955 !important; }    /* error / fallo */
+.real-log-info  { color: #9da0a8 !important; }    /* info neutro */
+
+.real-cursor-block {
+  display: inline-block !important;
+  width: 7px !important;
+  height: 14px !important;
+  background: #d4d4d4 !important;
+  vertical-align: middle !important;
+  margin-left: 2px !important;
+  animation: real-blink 1s steps(2, start) infinite !important;
+}
+
+@keyframes real-blink { 50% { opacity: 0; } }
+
