@@ -7,6 +7,7 @@ import SPlaneDiagram from "./components/SPlaneDiagram";
 import PhysicalEmulationPanel from "./components/PhysicalEmulationPanel";
 import GuionForo from "./components/GuionForo";
 import SlideshowForo from "./components/SlideshowForo";
+import TriviaLaplace from "./components/TriviaLaplace";
 import { 
   Bot, 
   Send, 
@@ -133,7 +134,7 @@ function generateSimulationData(selectedProtocol: ProtocolOption | null): Simula
 
 export default function App() {
   const [simState, setSimState] = useState<"idle" | "spiking" | "stabilizing" | "success" | "failed">("idle");
-  const [activeLayoutTab, setActiveLayoutTab] = useState<"lab" | "guion" | "diapositivas">("diapositivas");
+  const [activeLayoutTab, setActiveLayoutTab] = useState<"lab" | "guion" | "diapositivas" | "trivia">("diapositivas");
   const [currentTime, setCurrentTime] = useState(0);
   const [activeProtocol, setActiveProtocol] = useState<ProtocolOption | null>(null);
 
@@ -453,6 +454,17 @@ export default function App() {
               >
                 📊 Diapositivas G7
               </button>
+              <button
+                onClick={() => setActiveLayoutTab("trivia")}
+                className={`px-4 py-2 rounded-lg text-xs font-bold font-sans transition-all cursor-pointer flex items-center gap-1.5 hover:bg-purple-900/10 ${
+                  activeLayoutTab === "trivia"
+                    ? "bg-purple-600/15 text-purple-400 border border-purple-500/25"
+                    : "text-slate-400 hover:text-purple-300 border border-transparent"
+                }`}
+                id="tab-trivia-academica"
+              >
+                🎮 Desafío Trivia (Contra el Reloj)
+              </button>
             </div>
             <div className="text-[10px] bg-slate-900/60 border border-slate-800/60 px-3 py-1.5 rounded-lg font-mono text-zinc-400 flex items-center gap-1.5">
               <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -708,10 +720,20 @@ export default function App() {
         <main className="flex-1 p-6 overflow-y-auto font-sans">
           <GuionForo />
         </main>
+      ) : activeLayoutTab === "trivia" ? (
+        <main className="flex-1 p-0 overflow-hidden font-sans">
+          <TriviaLaplace 
+            onBackToPresentation={() => {
+              setActiveLayoutTab("diapositivas");
+              setSlideshowCurrent(8);
+            }} 
+          />
+        </main>
       ) : (
         <main className="flex-1 p-6 overflow-y-auto font-sans">
           <SlideshowForo 
             onGoToSimulator={() => setActiveLayoutTab("lab")} 
+            onGoToTrivia={() => setActiveLayoutTab("trivia")}
             current={slideshowCurrent}
             onCurrentChange={setSlideshowCurrent}
             isFullscreen={slideshowFullscreen}

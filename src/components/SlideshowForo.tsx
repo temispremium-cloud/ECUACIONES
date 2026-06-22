@@ -82,12 +82,14 @@ export interface SlideCustomization {
 
 export default function SlideshowForo({
   onGoToSimulator,
+  onGoToTrivia,
   current: propCurrent,
   onCurrentChange,
   isFullscreen: propIsFullscreen,
   onIsFullscreenChange
 }: {
   onGoToSimulator?: () => void;
+  onGoToTrivia?: () => void;
   current?: number;
   onCurrentChange?: (c: number) => void;
   isFullscreen?: boolean;
@@ -134,7 +136,7 @@ export default function SlideshowForo({
     subtitle: string;
     content: string;
   }>>(() => {
-    const saved = localStorage.getItem("slideshow_canva_texts_v12");
+    const saved = localStorage.getItem("slideshow_canva_texts_v15");
     if (saved) {
       try {
         return JSON.parse(saved);
@@ -147,8 +149,8 @@ export default function SlideshowForo({
         badge: "PRESENTACIÓN DE PORTADA",
         speaker: "DANILO, RODERICK, JOSHEP, TEMISTOCLE",
         role: "Foro Académico de Control Dinámico",
-        title: "Transformada de Laplace en Ingeniería",
-        subtitle: "Discusión Interactiva - UniGuajira",
+        title: "Transformada de Laplace",
+        subtitle: "Modelado y Control de Sistemas Dinámicos",
         content: "Integrantes del Panel:\n• DANILO JOSÉ MIRANDA EPIAYU (Moderador - P1)\n• RODERICK GALLARDO GRATEROL (Indagador - P4)\n• JOSHEP DAVID ROMERO PEREZ (Explicador - P2)\n• TEMISTOCLE EISYANIOR ATENCIO IPUANA (Guía / Simulador - P3)"
       },
       2: {
@@ -200,6 +202,14 @@ export default function SlideshowForo({
         content: "Laplace destaca por ayudarnos a organizar y simplificar problemas complejos para encontrar soluciones más efectivas. ¡Gracias por su atención!"
       },
       8: {
+        badge: "JUEGO INTERACTIVO",
+        speaker: "TODOS LOS INTEGRANTES",
+        role: "Evaluación de Conocimiento Colectivo",
+        title: "DESAFÍO LAPLACE: TRIVIA INTERACTIVA",
+        subtitle: "Evaluación Contra el Reloj",
+        content: "Para cerrar nuestro foro de una forma emocionante, los invitamos a participar en un emocionante juego de preguntas rápidas sobre la Transformada de Laplace. Evaluaremos conceptos clave, polos en s, amortiguamiento y su impacto en sistemas de ingeniería. ¿Están listos para poner a prueba su mente?"
+      },
+      9: {
         badge: "AGRADECIMIENTOS",
         speaker: "TODOS LOS INTEGRANTES",
         role: "Cierre del Foro",
@@ -236,7 +246,7 @@ export default function SlideshowForo({
 
   // We load / save customizations dynamically
   const [customizations, setCustomizations] = useState<Record<number, SlideCustomization>>(() => {
-    const saved = localStorage.getItem("slideshow_canva_customizations_v12");
+    const saved = localStorage.getItem("slideshow_canva_customizations_v15");
     if (saved) {
       try {
         return JSON.parse(saved);
@@ -393,6 +403,26 @@ export default function SlideshowForo({
         textAlignment: "left" as const 
       },
       8: { 
+        titleSize: 44, 
+        subtitleSize: 22, 
+        contentSize: 30, 
+        textX: 19, 
+        textY: 42, 
+        illustrationX: -74, 
+        illustrationY: 45, 
+        illustrationScale: 1.4, 
+        imageUrl: "https://i.imgur.com/VXL439v.png", 
+        titleColor: "#0f172a", 
+        subtitleColor: "#9a3412", 
+        contentColor: "#1e293b", 
+        badgeBg: "#e0e7ff", 
+        badgeColor: "#4338ca", 
+        boxBg: "rgba(255, 255, 255, 0.98)", 
+        boxBorderColor: "rgba(203, 213, 225, 0.6)", 
+        fontFamily: "Inter", 
+        textAlignment: "left" as const 
+      },
+      9: { 
         titleSize: 53, 
         subtitleSize: 22, 
         contentSize: 30, 
@@ -417,12 +447,12 @@ export default function SlideshowForo({
 
   // Save changes automatically to local storage
   useEffect(() => {
-    localStorage.setItem("slideshow_canva_customizations_v12", JSON.stringify(customizations));
+    localStorage.setItem("slideshow_canva_customizations_v15", JSON.stringify(customizations));
   }, [customizations]);
 
   // Save text changes to local storage
   useEffect(() => {
-    localStorage.setItem("slideshow_canva_texts_v12", JSON.stringify(slidesTextData));
+    localStorage.setItem("slideshow_canva_texts_v15", JSON.stringify(slidesTextData));
   }, [slidesTextData]);
 
   const updateCurrentCustomization = <K extends keyof SlideCustomization>(
@@ -598,6 +628,26 @@ export default function SlideshowForo({
         textAlignment: "left" as const 
       },
       8: { 
+        titleSize: 44, 
+        subtitleSize: 22, 
+        contentSize: 30, 
+        textX: 19, 
+        textY: 42, 
+        illustrationX: -74, 
+        illustrationY: 45, 
+        illustrationScale: 1.4, 
+        imageUrl: "https://i.imgur.com/VXL439v.png", 
+        titleColor: "#0f172a", 
+        subtitleColor: "#9a3412", 
+        contentColor: "#1e293b", 
+        badgeBg: "#e0e7ff", 
+        badgeColor: "#4338ca", 
+        boxBg: "rgba(255, 255, 255, 0.98)", 
+        boxBorderColor: "rgba(203, 213, 225, 0.6)", 
+        fontFamily: "Inter", 
+        textAlignment: "left" as const 
+      },
+      9: { 
         titleSize: 53, 
         subtitleSize: 22, 
         contentSize: 30, 
@@ -619,15 +669,15 @@ export default function SlideshowForo({
       }
     };
     setCustomizations(fresh);
-    localStorage.setItem("slideshow_canva_customizations_v12", JSON.stringify(fresh));
+    localStorage.setItem("slideshow_canva_customizations_v15", JSON.stringify(fresh));
 
     const defaultTexts = {
       1: {
         badge: "PRESENTACIÓN DE PORTADA",
         speaker: "DANILO, RODERICK, JOSHEP, TEMISTOCLE",
         role: "Foro Académico de Control Dinámico",
-        title: "Transformada de Laplace en Ingeniería",
-        subtitle: "Discusión Interactiva - UniGuajira",
+        title: "Transformada de Laplace",
+        subtitle: "Modelado y Control de Sistemas Dinámicos",
         content: "Integrantes del Panel:\n• DANILO JOSÉ MIRANDA EPIAYU (Moderador - P1)\n• RODERICK GALLARDO GRATEROL (Indagador - P4)\n• JOSHEP DAVID ROMERO PEREZ (Explicador - P2)\n• TEMISTOCLE EISYANIOR ATENCIO IPUANA (Guía / Simulador - P3)"
       },
       2: {
@@ -636,7 +686,7 @@ export default function SlideshowForo({
         role: "Moderador - Apertura y Contexto",
         title: "LA FIEBRE DE LAS MATRÍCULAS",
         subtitle: "¿Soportará la plataforma o se caerá?",
-        content: "Durante el inicio de matrículas, miles de estudiantes entran en simultáneo. El sistema se ralentiza and corre el riesgo de colapsar. ¿Cómo prever y evitar este colapso antes de que ocurra?"
+        content: "Durante el inicio de matrículas, miles de estudiantes entran en simultáneo. El sistema se ralentiza y corre el riesgo de colapsar. ¿Cómo prever y evitar este colapso antes de que ocurra?"
       },
       3: {
         badge: "PASO 2: EL TRADUCTOR",
@@ -679,6 +729,14 @@ export default function SlideshowForo({
         content: "Laplace destaca por ayudarnos a organizar y simplificar problemas complejos para encontrar soluciones más efectivas. ¡Gracias por su atención!"
       },
       8: {
+        badge: "JUEGO INTERACTIVO",
+        speaker: "TODOS LOS INTEGRANTES",
+        role: "Evaluación de Conocimiento Colectivo",
+        title: "DESAFÍO LAPLACE: TRIVIA INTERACTIVA",
+        subtitle: "Evaluación Contra el Reloj",
+        content: "Para cerrar nuestro foro de una forma emocionante, los invitamos a participar en un emocionante juego de preguntas rápidas sobre la Transformada de Laplace. Evaluaremos conceptos clave, polos en s, amortiguamiento y su impacto en sistemas de ingeniería. ¿Están listos para poner a prueba su mente?"
+      },
+      9: {
         badge: "AGRADECIMIENTOS",
         speaker: "TODOS LOS INTEGRANTES",
         role: "Cierre del Foro",
@@ -688,7 +746,7 @@ export default function SlideshowForo({
       }
     };
     setSlidesTextData(defaultTexts);
-    localStorage.setItem("slideshow_canva_texts_v12", JSON.stringify(defaultTexts));
+    localStorage.setItem("slideshow_canva_texts_v15", JSON.stringify(defaultTexts));
   };
 
   const copyToClipboard = () => {
@@ -1087,6 +1145,20 @@ export default function SlideshowForo({
     ),
     7: <InteractiveMiniLab />,
     8: (
+      <div className="flex flex-col items-center justify-center p-6 bg-indigo-950/20 rounded-xl border border-indigo-500/15 text-center select-none">
+        <span className="text-4xl filter drop-shadow animate-bounce">🎮⏱️</span>
+        <h4 className="text-sm font-bold font-sans text-indigo-400 mt-3 uppercase tracking-wider">
+          Desafío Laplace Interactivo
+        </h4>
+        <span className="text-[10px] uppercase tracking-widest text-[#a855f7] font-extrabold font-mono block mt-1">
+          Modo Contra el Reloj
+        </span>
+        <div className="mt-4 text-[9px] text-zinc-400 leading-relaxed max-w-[200px]">
+          Participa en nuestro reto de 8 preguntas veloces. ¡Usa el botón de abajo para sumergirte en el juego!
+        </div>
+      </div>
+    ),
+    9: (
       <div className="flex flex-col items-center justify-center p-6 bg-indigo-950/20 rounded-xl border border-indigo-500/10 text-center select-none">
         <span className="text-4xl filter drop-shadow animate-bounce">🎓✨</span>
         <h4 className="text-sm font-bold font-sans text-amber-400 mt-3 uppercase tracking-wider">
@@ -1103,7 +1175,7 @@ export default function SlideshowForo({
   };
 
   // Build current processed slides from editable state and customizations
-  const slides = [1, 2, 3, 4, 5, 6, 7, 8].map((id) => {
+  const slides = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((id) => {
     const editTexts = slidesTextData[id];
     return {
       id,
@@ -1730,11 +1802,8 @@ export default function SlideshowForo({
           </div>
           <div>
             <h4 className="text-xs font-bold text-slate-100 uppercase tracking-wide leading-none">
-              Defensa del Foro Académico en Altas Prestaciones
+              Diapositiva
             </h4>
-            <p className="text-[10px] text-zinc-400">
-              Imitando exactamente el diseño original con transiciones de escala de imagen de fondo y parallax.
-            </p>
           </div>
         </div>
 
@@ -2329,6 +2398,18 @@ export default function SlideshowForo({
                                     </button>
                                   </div>
                                 )}
+
+                                {slide.id === 8 && (
+                                  <div className="mt-5 flex">
+                                    <button
+                                      onClick={() => onGoToTrivia && onGoToTrivia()}
+                                      className="px-6 py-3.5 cursor-pointer bg-gradient-to-r from-indigo-500 to-purple-650 hover:from-indigo-400 hover:to-purple-550 border border-indigo-400/20 text-xs font-black text-white rounded-xl flex items-center gap-2 active:scale-95 transition-all shadow-lg animate-pulse uppercase tracking-wider"
+                                      id="btn-slide-go-to-trivia"
+                                    >
+                                      <span>Iniciar Desafío Laplace (Juego) 🎮</span>
+                                    </button>
+                                  </div>
+                                )}
                               </div>
 
                               {/* Right Column Custom Aesthetic Illustration Box */}
@@ -2461,17 +2542,14 @@ export default function SlideshowForo({
           <div className="mt-4 flex justify-center">
             <button
               onClick={() => setShowSyncScript(!showSyncScript)}
-              className={`px-5 py-2.5 rounded-xl text-xs font-bold font-sans transition-all cursor-pointer flex items-center gap-2 shadow-lg active:scale-95 border hover:scale-[1.01] ${
+              className={`p-3 rounded-full text-sm transition-all cursor-pointer flex items-center justify-center shadow-lg active:scale-95 border hover:scale-110 ${
                 showSyncScript
-                  ? "bg-gradient-to-r from-rose-600/20 to-indigo-600/20 border-indigo-500/30 text-indigo-300 hover:border-indigo-400/40"
-                  : "bg-slate-900/90 border-slate-800 text-slate-300 hover:text-white hover:bg-slate-850 hover:border-slate-700"
+                  ? "bg-gradient-to-r from-rose-600/30 to-indigo-600/30 border-indigo-500/50 text-indigo-300"
+                  : "bg-slate-900/90 border-slate-800 text-slate-300 hover:text-white hover:bg-slate-850"
               }`}
+              title={showSyncScript ? "Ocultar Guión de Apoyo" : "Mostrar Guión de Apoyo Sincronizado"}
             >
-              <span className="text-sm">{showSyncScript ? "👁️" : "🗣️"}</span>
-              <span>{showSyncScript ? "Ocultar Guión de Apoyo" : "Mostrar Guión de Apoyo Sincronizado"}</span>
-              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-black/30 border border-white/5 text-zinc-400">
-                {showSyncScript ? "ACTIVO" : "OCULTO"}
-              </span>
+              <span>{showSyncScript ? "👁️" : "🗣️"}</span>
             </button>
           </div>
 
